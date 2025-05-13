@@ -1,0 +1,21 @@
+IDN - identifiers
+CONST - constants (integer, string)
+OP_ASSIGN - (operator =)
+OP_EQUAL - (==)
+OP_NOT_EQUAL - (!=)
+OP_LESS (<)
+OP_GREATER (>)
+OP_LESS_EQUAL (<=)
+OP_GREATER_EQUAL (>=)
+OP_PLUS - (operator +)
+OP_MINUS -
+OP_STAR -
+OP_SLASH -
+L_PARENT
+R_PARENT
+KW_DEFINE
+KW_PRINT
+KW_WHILE
+KW_IF
+KW_ELSE
+KW_ELSE_IF
