@@ -1,8 +1,15 @@
 # SimpleLang
 **SimpleLang** is a minimal educational programming language built to explore and understand the internals of programming languages — including lexing, parsing, semantic analysis, and interpretation. It uses a **block-based structure** to represent the Abstract Syntax Tree (AST), where each node and sub-node is explicitly defined using tags.
 
-## Syntax rules (TO-DO)
-...
+## SimpleLang Syntax
+**Program structure**
+- A program consists of zero or more statements.
+- Statements can be:
+    - Variable declarations
+    - Assignments
+    - ```if``` statements (with optional ```else if``` / ```else```)
+    
+
 
 ## Installation
 Clone SimpleLang directory:
