@@ -2,7 +2,7 @@
 **SimpleLang** is a minimal educational programming language built to explore and understand the internals of programming languages — including lexing, parsing, semantic analysis, and interpretation. It uses a **block-based structure** to represent the Abstract Syntax Tree (AST), where each node and sub-node is explicitly defined using tags.
 
 ## SimpleLang Syntax
-**Program structure**
+### Program structure
 - A program consists of zero or more statements.
 - Statements can be:
     - Variable declarations
@@ -12,7 +12,7 @@
     - ```print``` statements
     - code blocks (```{}```)
 
-**Variable declaration**
+### Variable declaration
 ```
 var x;
 var y = 10;
