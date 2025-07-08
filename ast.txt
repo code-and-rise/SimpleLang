@@ -1,0 +1,43 @@
+<program>
+ <statement_list>
+  <statement>
+   <declaration>
+    KW_VAR var 1
+    IDN x 1
+    <assign_opt>
+     OP_ASSIGN = 1
+     <expr>
+      <rel_expr>
+       <add_expr>
+        <term>
+         <factor>
+          CONST_INT 6 1
+  <statement_list>
+   <statement>
+    <print_stmt>
+     KW_PRINT print 2
+     L_PARENT ( 2
+     <expr>
+      <rel_expr>
+       <add_expr>
+        <term>
+         <factor>
+          IDN x 2
+     R_PARENT ) 2
+   <statement_list>
+    <statement>
+     <print_stmt>
+      KW_PRINT print 4
+      L_PARENT ( 4
+      <expr>
+       <rel_expr>
+        <add_expr>
+         <term>
+          <factor>
+           CONST_STRING "123" 4
+         <add_expr_tail>
+          OP_PLUS + 4
+          <term>
+           <factor>
+            IDN x 4
+      R_PARENT ) 4

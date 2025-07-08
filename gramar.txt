@@ -1,0 +1,40 @@
+<program> ::= <statement_list>
+
+<statement_list> ::= <statement> <statement_list> | $
+
+<statement> ::= <declaration> | <assignment> | <if_stmt> | <print_stmt> | <for_stmt> | <block>
+
+<declaration> ::= KW_VAR IDN <assign_opt> <semicolon_opt>
+
+<assignment> ::= IDN <assign_opt> <semicolon_opt>
+<assign_opt> ::= OP_ASSIGN <expr> | $
+<semicolon_opt>::= SC_SEMICOLON | $
+
+<if_stmt> ::= KW_IF L_PARENT <expr> R_PARENT <block> <else_if_stmt_opt> <else_stmt_opt>
+<else_if_stmt_opt> ::= KW_ELSE KW_IF L_PARENT <expr> R_PARENT <block> <else_if_stmt_opt> | $
+<else_stmt_opt> ::= KW_ELSE <block> | $
+
+<print_stmt> ::= KW_PRINT L_PARENT <expr> R_PARENT <semicolon_opt>
+
+<for_stmt> ::= KW_FOR L_PARENT <iterator_declaration_opt> IDN SC_SEMICOLON <range_expr> SC_SEMICOLON <step_expr> R_PARENT <block>
+<iterator_declaration_opt> ::= KW_VAR | $
+<range_expr> ::= <expr> SC_COLON <expr>
+<step_expr> ::= <expr>
+
+<block> ::= L_BRACE <statement_list> R_BRACE
+
+<expr> ::= <rel_expr>
+
+<rel_expr> ::= <add_expr> <rel_expr_tail>
+<rel_expr_tail> ::= <rel_op> <add_expr> | $
+
+<add_expr> ::= <term> <add_expr_tail>
+<add_expr_tail> ::= OP_PLUS <term> <add_expr_tail> | OP_MINUS <term> <add_expr_tail> | $
+
+<term> ::= <factor> <term_tail>
+<term_tail> ::= OP_STAR <factor> <term_tail> | OP_SLASH <factor> <term_tail> | OP_MOD <factor> <term_tail> | $
+
+<factor> ::= IDN | <minus_opt> CONST_INT | CONST_STRING | CONST_BOOL | L_PARENT <expr> R_PARENT
+<minus_opt> ::= OP_MINUS | $
+
+<rel_op> ::= OP_EQ | OP_NOT_EQ | OP_LT | OP_GT | OP_LE | OP_GE

@@ -1,0 +1,1 @@
+- define better behaviour for different operators with different types!!
