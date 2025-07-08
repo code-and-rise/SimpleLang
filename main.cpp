@@ -294,6 +294,11 @@ private:
     int depth = 0;
     vector<string> ASTNodes;
 
+    string getCurrentToken()
+    {
+        return currentToken.substr(0, currentToken.find(' '));
+    }
+
     string printDepth()
     {
         string result = "";
@@ -327,7 +332,7 @@ private:
     {
         addNode("<statement_list>");
         depth++;
-        while (!currentToken.empty() && currentToken.substr(0, currentToken.find(' ')) != "R_BRACET")
+        while (!currentToken.empty() && getCurrentToken() != "R_BRACET")
         {
             statement();
         }
@@ -338,23 +343,23 @@ private:
     {
         addNode("<statement>");
         depth++;
-        if (currentToken.substr(0, currentToken.find(' ')) == "KW_VAR")
+        if (getCurrentToken() == "KW_VAR")
         {
             assignment();
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "KW_IF")
+        else if (getCurrentToken() == "KW_IF")
         {
             if_stmt();
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "KW_FOR")
+        else if (getCurrentToken() == "KW_FOR")
         {
             for_stmt();
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "KW_WHILE")
+        else if (getCurrentToken() == "KW_WHILE")
         {
             while_stmt();
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "KW_PRINT")
+        else if (getCurrentToken() == "KW_PRINT")
         {
             print_stmt();
         }
@@ -389,14 +394,14 @@ private:
 
     void if_stmt_tail()
     {
-        if (currentToken.substr(0, currentToken.find(' ')) != "KW_ELSE")
+        if (getCurrentToken() != "KW_ELSE")
         {
             return;
         }
         addNode("<if_stmt_tail>");
         depth++;
         consume("KW_ELSE");
-        if (currentToken.substr(0, currentToken.find(' ')) == "KW_IF")
+        if (getCurrentToken() == "KW_IF")
         {
             if_stmt();
         }
@@ -453,10 +458,10 @@ private:
         addNode("<comparison>");
         depth++;
         operand();
-        while (isRelOp(currentToken.substr(0, currentToken.find(' '))))
+        while (isRelOp(getCurrentToken()))
         {
             // cout << "ovdje" << endl;
-            consume(currentToken.substr(0, currentToken.find(' ')));
+            consume(getCurrentToken());
             operand();
         }
         depth--;
@@ -467,9 +472,9 @@ private:
         addNode("<operand>");
         depth++;
         term();
-        while (currentToken.substr(0, currentToken.find(' ')) == "OP_PLUS" || currentToken.substr(0, currentToken.find(' ')) == "OP_MINUS")
+        while (getCurrentToken() == "OP_PLUS" || getCurrentToken() == "OP_MINUS")
         {
-            consume(currentToken.substr(0, currentToken.find(' ')));
+            consume(getCurrentToken());
             term();
         }
         depth--;
@@ -496,9 +501,9 @@ private:
         addNode("<term>");
         depth++;
         factor();
-        while (currentToken.substr(0, currentToken.find(' ')) == "OP_STAR" || currentToken.substr(0, currentToken.find(' ')) == "OP_SLASH")
+        while (getCurrentToken() == "OP_STAR" || getCurrentToken() == "OP_SLASH")
         {
-            consume(currentToken.substr(0, currentToken.find(' ')));
+            consume(getCurrentToken());
             factor();
         }
         depth--;
@@ -508,19 +513,19 @@ private:
     {
         addNode("<factor>");
         depth++;
-        if (currentToken.substr(0, currentToken.find(' ')) == "IDN")
+        if (getCurrentToken() == "IDN")
         {
             consume("IDN");
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "CONST_NUM")
+        else if (getCurrentToken() == "CONST_NUM")
         {
             consume("CONST_NUM");
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "CONST_STRING")
+        else if (getCurrentToken() == "CONST_STRING")
         {
             consume("CONST_STRING");
         }
-        else if (currentToken.substr(0, currentToken.find(' ')) == "L_PARENT")
+        else if (getCurrentToken() == "L_PARENT")
         {
             consume("L_PARENT");
             expr();
@@ -535,7 +540,7 @@ private:
 
     void consume(string expectedToken)
     {
-        if (currentToken.substr(0, currentToken.find(' ')) == expectedToken)
+        if (getCurrentToken() == expectedToken)
         {
             addNode(currentToken);
             currentToken = lexer.nextToken();
