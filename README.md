@@ -8,8 +8,18 @@
     - Variable declarations
     - Assignments
     - ```if``` statements (with optional ```else if``` / ```else```)
-    
+    - ```for``` loops
+    - ```print``` statements
+    - code blocks (```{}```)
 
+**Variable declaration**
+```
+var x;
+var y = 10;
+```
+- Use ```var``` to declare a variable.
+- Assigment (```=```) is **optional** during declaration.
+- A semicolon (```;```) is **optional** at the end.
 
 ## Installation
 Clone SimpleLang directory:
