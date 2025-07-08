@@ -116,3 +116,5 @@ Once you are finished with writing code in SimpleLang, you can execute it with c
 ```
 ./simplelang <file_name>.sl
 ```
+
+Happy coding! ;)
